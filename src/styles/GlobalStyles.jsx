@@ -18,21 +18,6 @@ const GlobalStyles = createGlobalStyle`
         flex-direction: column;
         gap: 6rem;
         padding: 0 6rem;
-        @media screen and (max-width: 1280px) {
-            padding: 0 3rem;
-        }
-        @media screen and (max-width: 1080px) {
-            padding: 0 1.5rem;
-            filter: ${(props) =>
-              props.toggle ? 'blur(5px) brightness(0.7)' : 'none'};
-            pointer-events: ${(props) => (props.show ? 'none' : '')};
-            user-select: ${(props) => (props.show ? 'none' : '')};
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
-        @media screen and (max-width: 480px) {
-            padding: 0 1rem;
-        }
     }
     input, textarea{
         font-family: 'Nunito Sans', sans-serif;
