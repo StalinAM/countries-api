@@ -7,6 +7,6 @@ export const dark = {
 export const light = {
   elements: 'hsl(0, 0%, 100%)',
   background: 'hsl(0, 0%, 98%)',
-  text: 'hsl(0, 0%, 100%)',
+  text: 'hsl(0, 0%,0%)',
   input: 'hsl(0, 0%, 52%)'
 }
