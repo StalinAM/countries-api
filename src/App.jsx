@@ -1,5 +1,13 @@
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from './styles/GlobalStyles'
+import { dark } from './styles/Theme'
 function App() {
-  return <div>HOLA</div>
+  return (
+    <>
+      <GlobalStyles />
+      <ThemeProvider theme={dark}>HOLA</ThemeProvider>
+    </>
+  )
 }
 
 export default App
