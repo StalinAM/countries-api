@@ -13,12 +13,6 @@ const GlobalStyles = createGlobalStyle`
         overflow-x: hidden;
         font-family: 'Nunito Sans', sans-serif;
     }
-    main{
-        display: flex;
-        flex-direction: column;
-        gap: 6rem;
-        padding: 0 6rem;
-    }
     input, textarea{
         font-family: 'Nunito Sans', sans-serif;
     }
