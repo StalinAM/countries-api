@@ -31,6 +31,7 @@ const Container = styled.header`
   padding: 2rem 1rem;
   background-color: ${(props) => props.theme.elements};
   color: ${(props) => props.theme.text};
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   h1 {
     font-size: 1rem;
     font-weight: 800;
