@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components'
+import Filter from './components/Filter'
 import Header from './components/Header'
 import useThemeMode from './hooks/useThemeMode'
 import GlobalStyles from './styles/GlobalStyles'
@@ -10,6 +11,9 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme === 'dark' ? dark : light}>
         <Header theme={theme} toggleTheme={toggleTheme} />
+        <main>
+          <Filter />
+        </main>
       </ThemeProvider>
     </>
   )
