@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
+import { ApiContext } from '../context/CountriesApi'
 
-function Filter() {
+function Filter({ setWordFilter }) {
+  const { setRegion, region } = useContext(ApiContext)
+  const [active, setActive] = useState(false)
+  const regions = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania']
+  const handleRegion = (region) => {
+    setRegion(region)
+    setActive(false)
+  }
+  const handleChange = (event) => {
+    setWordFilter(event.target.value)
+  }
   return (
     <Container>
       <ContainerShearch>
         <i className='uil uil-search' />
-        <InputF type='text' placeholder='Search for a country...' />
+        <InputF
+          onChange={handleChange}
+          type='text'
+          placeholder='Search for a country...'
+        />
       </ContainerShearch>
       <ContainerFilter>
         <ContentFilter>
-          <span>Filter by Region</span>
-          <i className='uil uil-angle-down' />
+          <span>{region ? region : 'Filter by region...'}</span>
+          <i
+            onClick={() => setActive(!active)}
+            className='uil uil-angle-down'
+          />
         </ContentFilter>
-        <Menu>
-          <li>Africa</li>
-          <li>America</li>
-          <li>Asia</li>
-          <li>Europe</li>
-          <li>Oceania</li>
+        <Menu show={active}>
+          {regions.map((item, index) => (
+            <li key={index} onClick={() => handleRegion(item.toLowerCase())}>
+              {item}
+            </li>
+          ))}
         </Menu>
       </ContainerFilter>
     </Container>
@@ -57,6 +75,7 @@ const ContainerShearch = styled.form`
   }
 `
 const InputF = styled.input`
+  width: 100%;
   background: none;
   border: none;
   color: ${(props) => props.theme.text};
@@ -77,27 +96,37 @@ const ContentFilter = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   background-color: ${(props) => props.theme.elements};
   span {
+    text-transform: capitalize;
     color: ${(props) => props.theme.text};
     font-size: 0.875rem;
     font-weight: 600;
   }
   i {
+    cursor: pointer;
     color: ${(props) => props.theme.text};
     font-size: 1.25rem;
   }
 `
 const Menu = styled.ul`
+  display: ${(props) => (props.show ? 'flex' : 'none')};
+  flex-direction: column;
   position: absolute;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 10px;
   border-radius: 8px;
   width: 200px;
-  top: 52px;
+  top: 55px;
   background-color: ${(props) => props.theme.elements};
-  display: none;
+
   li {
+    cursor: pointer;
+    padding: 5px 10px;
     font-size: 0.875rem;
+    border-radius: 8px;
     font-weight: 600;
     color: ${(props) => props.theme.text};
+    &:hover {
+      background-color: ${(props) => props.theme.background};
+    }
   }
 `
