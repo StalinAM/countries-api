@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
 import Cards from './Cards'
 
-function Pagination() {
+function Pagination({ wordFilter }) {
   const { countries, currentPage, totalPages, setCurrentPage } =
     useContext(ApiContext)
   const handlePage = (page) => setCurrentPage(page)
@@ -22,12 +22,16 @@ function Pagination() {
     }
     return pages
   }
+  const newCountries = countries?.filter((countrie) =>
+    countrie.name.common.toLowerCase().includes(wordFilter)
+  )
   return (
     <Container>
+      <ContainerPages>{renderPagination()}</ContainerPages>
       <Content>
-        <Cards countries={countries} />
+        <Cards countries={wordFilter ? newCountries : countries} />
       </Content>
-      <div>{renderPagination()}</div>
+      <ContainerPages>{renderPagination()}</ContainerPages>
     </Container>
   )
 }
@@ -37,8 +41,9 @@ export default Pagination
 const Container = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 1rem;
-  gap: 1rem;
+  gap: 2rem;
   @media screen and (min-width: 768px) {
     padding: 1rem 5rem;
   }
@@ -49,4 +54,23 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4rem;
+`
+const ContainerPages = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: ${(props) => props.theme.elements};
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    color: ${(props) => props.theme.text};
+    font-weight: 600;
+    &:disabled {
+      background-color: ${(props) => props.theme.background};
+      color: ${(props) => props.theme.input};
+      font-weight: 300;
+    }
+  }
 `
