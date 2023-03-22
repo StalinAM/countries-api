@@ -36,6 +36,9 @@ const Container = styled.header`
     font-size: 1rem;
     font-weight: 800;
   }
+  @media screen and (min-width: 768px) {
+    padding: 2rem 5rem;
+  }
 `
 const Theme = styled.button`
   display: flex;

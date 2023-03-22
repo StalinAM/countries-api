@@ -6,7 +6,7 @@ function Filter() {
     <Container>
       <ContainerShearch>
         <i className='uil uil-search' />
-        <input type='text' />
+        <InputF type='text' placeholder='Search for a country...' />
       </ContainerShearch>
       <ContainerFilter>
         <ContentFilter>
@@ -33,6 +33,13 @@ const Container = styled.section`
   gap: 2rem;
   width: 100%;
   padding: 1.5rem 1rem;
+  @media screen and (min-width: 480px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 1.5rem 5rem;
+  }
 `
 const ContainerShearch = styled.form`
   display: flex;
@@ -44,6 +51,17 @@ const ContainerShearch = styled.form`
   i {
     color: ${(props) => props.theme.text};
     font-size: 1.25rem;
+  }
+  @media screen and (min-width: 768px) {
+    width: 400px;
+  }
+`
+const InputF = styled.input`
+  background: none;
+  border: none;
+  color: ${(props) => props.theme.text};
+  &::placeholder {
+    color: ${(props) => props.theme.input};
   }
 `
 const ContainerFilter = styled.div`
