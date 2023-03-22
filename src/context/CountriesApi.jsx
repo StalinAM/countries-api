@@ -6,7 +6,10 @@ function CountriesApi({ children }) {
   const [countries, setCountries] = useState()
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(50)
-  const url = 'https://restcountries.com/v3.1/all'
+  const [region, setRegion] = useState('')
+  const url = `https://restcountries.com/v3.1/${
+    region === '' || region === 'all' ? 'all' : `region/${region}`
+  }`
   async function loadData() {
     try {
       const response = await fetch(url)
@@ -19,7 +22,7 @@ function CountriesApi({ children }) {
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [region])
 
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -33,7 +36,9 @@ function CountriesApi({ children }) {
         currentPage,
         totalPages,
         setCurrentPage,
-        setItemsPerPage
+        setItemsPerPage,
+        setRegion,
+        region
       }}
     >
       {children}
