@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Nunito Sans', sans-serif;
     }
     input, textarea{
-        font-family: 'Nunito Sans', sans-serif;
+        font: inherit;
     }
     input:focus, textarea:focus{
         outline: none;
@@ -36,7 +36,7 @@ const GlobalStyles = createGlobalStyle`
         cursor: pointer;
     }
     button{
-        font-family: 'Nunito Sans', sans-serif;
+        font: inherit;
         cursor: pointer;
         border: none;
         outline: none;
