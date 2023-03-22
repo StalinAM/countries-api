@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import Filter from './components/Filter'
 import Header from './components/Header'
@@ -7,14 +8,15 @@ import GlobalStyles from './styles/GlobalStyles'
 import { dark, light } from './styles/Theme'
 function App() {
   const [theme, toggleTheme] = useThemeMode()
+  const [wordFilter, setWordFilter] = useState('')
   return (
     <>
       <GlobalStyles />
       <ThemeProvider theme={theme === 'dark' ? dark : light}>
         <Header theme={theme} toggleTheme={toggleTheme} />
         <Contaier>
-          <Filter />
-          <Pagination />
+          <Filter setWordFilter={setWordFilter} />
+          <Pagination wordFilter={wordFilter} />
         </Contaier>
       </ThemeProvider>
     </>
