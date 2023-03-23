@@ -7,6 +7,8 @@ function CountriesApi({ children }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(50)
   const [region, setRegion] = useState('')
+  const [wordFilter, setWordFilter] = useState('')
+
   const url = `https://restcountries.com/v3.1/${
     region === '' || region === 'all' ? 'all' : `region/${region}`
   }`
@@ -22,11 +24,13 @@ function CountriesApi({ children }) {
 
   useEffect(() => {
     loadData()
-  }, [region])
+  }, [region, wordFilter])
 
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = countries?.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = wordFilter
+    ? countries
+    : countries?.slice(indexOfFirstItem, indexOfLastItem)
 
   const totalPages = Math.ceil((countries?.length || 0) / itemsPerPage)
   return (
@@ -38,7 +42,9 @@ function CountriesApi({ children }) {
         setCurrentPage,
         setItemsPerPage,
         setRegion,
-        region
+        region,
+        wordFilter,
+        setWordFilter
       }}
     >
       {children}
