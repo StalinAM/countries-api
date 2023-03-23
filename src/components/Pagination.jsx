@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
 import Cards from './Cards'
 
-function Pagination({ wordFilter }) {
-  const { countries, currentPage, totalPages, setCurrentPage } =
+function Pagination() {
+  const { countries, currentPage, totalPages, setCurrentPage, wordFilter } =
     useContext(ApiContext)
   const handlePage = (page) => setCurrentPage(page)
   const renderPagination = () => {
@@ -27,11 +27,11 @@ function Pagination({ wordFilter }) {
   )
   return (
     <Container>
-      <ContainerPages>{renderPagination()}</ContainerPages>
+      {!wordFilter && <ContainerPages>{renderPagination()}</ContainerPages>}
       <Content>
         <Cards countries={wordFilter ? newCountries : countries} />
       </Content>
-      <ContainerPages>{renderPagination()}</ContainerPages>
+      {!wordFilter && <ContainerPages>{renderPagination()}</ContainerPages>}
     </Container>
   )
 }
