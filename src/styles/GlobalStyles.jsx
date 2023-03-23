@@ -43,14 +43,17 @@ const GlobalStyles = createGlobalStyle`
     }
 /* Scrollbar */
     body::-webkit-scrollbar {
-        width: 5px;               /* width of the entire scrollbar */
+        width: 8px;               /* width of the entire scrollbar */
     }
     body::-webkit-scrollbar-track {
-        background: none;        /* color of the tracking area */
+        background: ${(props) =>
+          props.theme.background};        /* color of the tracking area */
     }
     body::-webkit-scrollbar-thumb {
-        background-color: #8176AF;    /* color of the scroll thumb */
+        background-color: ${(props) =>
+          props.theme.elements};    /* color of the scroll thumb */
         border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 1px solid #bcbcbc;
     }
 `
 export default GlobalStyles
