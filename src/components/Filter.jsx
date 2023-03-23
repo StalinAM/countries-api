@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
 
-function Filter({ setWordFilter }) {
-  const { setRegion, region } = useContext(ApiContext)
+function Filter() {
+  const { setRegion, region, setWordFilter } = useContext(ApiContext)
   const [active, setActive] = useState(false)
   const regions = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania']
   const handleRegion = (region) => {
