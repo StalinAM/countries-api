@@ -48,12 +48,15 @@ const Container = styled.section`
     padding: 1rem 5rem;
   }
 `
-const Content = styled.div`
+const Content = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 4rem;
+  li {
+    cursor: pointer;
+  }
 `
 const ContainerPages = styled.div`
   display: flex;
