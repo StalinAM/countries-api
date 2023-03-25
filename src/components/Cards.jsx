@@ -1,30 +1,40 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 function Cards({ countries }) {
+  const navigate = useNavigate()
+  function handleClick(id) {
+    navigate(`/countrie/${id}`)
+  }
   return (
     <>
       {countries?.map((item) => (
-        <Card key={item.cca3}>
-          <img src={item.flags.svg} alt={item.flags.alt} />
-          <Content>
-            <h2>{item.name.common}</h2>
-            <Description>
-              <p>
-                Population:
-                <span> {item.population}</span>
-              </p>
-              <p>
-                Region:
-                <span> {item.region}</span>
-              </p>
-              <p>
-                Capital:
-                {<span> {item.capital ? item.capital[0] : ''}</span>}
-              </p>
-            </Description>
-          </Content>
-        </Card>
+        <li
+          key={item.cca3}
+          onClick={() => handleClick(item.cca3.toLowerCase())}
+        >
+          <Card>
+            <img src={item.flags.svg} alt={item.flags.alt} />
+            <Content>
+              <h2>{item.name.common}</h2>
+              <Description>
+                <p>
+                  Population:
+                  <span> {item.population}</span>
+                </p>
+                <p>
+                  Region:
+                  <span> {item.region}</span>
+                </p>
+                <p>
+                  Capital:
+                  {<span> {item.capital?.[0]}</span>}
+                </p>
+              </Description>
+            </Content>
+          </Card>
+        </li>
       ))}
     </>
   )
