@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { ApiContext } from '../context/CountriesApi'
 
 function Cards({ countries }) {
+  const { setWordFilter } = useContext(ApiContext)
   const navigate = useNavigate()
   function handleClick(id) {
     navigate(`/countrie/${id}`)
+    setWordFilter('a')
   }
   return (
     <>

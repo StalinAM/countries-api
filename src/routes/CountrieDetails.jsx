@@ -1,24 +1,38 @@
 import React, { useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
 
 function CountrieDetails() {
-  const { countries } = useContext(ApiContext)
+  const { countries, setWordFilter } = useContext(ApiContext)
   const { id } = useParams()
+  const navigate = useNavigate()
+
+  function goBack() {
+    navigate('/')
+    setWordFilter('')
+  }
+
+  function getBorderCountrie(id) {
+    const countrie = countries?.find((item) => item.cca3 === id)
+    return countrie.name.common
+  }
+
   const countrie = countries?.find((item) => item.cca3.toLowerCase() === id)
+
   function getNativeName(countrie) {
     const nativeName = countrie.name.nativeName
     const languageCode = Object.keys(countrie.languages)[0]
     return nativeName[languageCode].common
   }
+
   function getCurrencyName(countrie) {
     const currencyKey = Object.keys(countrie.currencies)[0]
     return countrie.currencies[currencyKey].name
   }
   return (
     <Container>
-      <Back to='/'>
+      <Back onClick={() => goBack()}>
         <i className='uil uil-arrow-left' />
         Back
       </Back>
@@ -59,7 +73,15 @@ function CountrieDetails() {
           </Description>
           <BorderC>
             <h3>Border Countries: </h3>
-            <ul>{}</ul>
+            <ListBorders>
+              {countrie.borders?.map((item) => (
+                <li key={item}>
+                  <Link to={`/countrie/${item.toLowerCase()}`}>
+                    {getBorderCountrie(item)}
+                  </Link>
+                </li>
+              ))}
+            </ListBorders>
           </BorderC>
         </ContainerDescription>
       </Content>
@@ -78,7 +100,7 @@ const Container = styled.section`
     padding: 5rem;
   }
 `
-const Back = styled(Link)`
+const Back = styled.button`
   width: fit-content;
   display: flex;
   gap: 0.5rem;
@@ -148,7 +170,24 @@ const Column = styled.div`
   }
 `
 const BorderC = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   h3 {
     font-size: 0.975rem;
+  }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+`
+const ListBorders = styled.ul`
+  display: flex;
+  gap: 0.5rem;
+  li {
+    background-color: ${(props) => props.theme.elements};
+    padding: 5px 15px;
+    font-size: 0.875rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   }
 `
