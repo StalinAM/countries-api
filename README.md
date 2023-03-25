@@ -41,7 +41,7 @@ Mobile Version
 ### Links
 
 - Solution URL: [GitHub](https://github.com/StalinAM/countries-api.git)
-- Live Site URL: [StalinAM](https://space-tourism-svam.vercel.app/)
+- Live Site URL: [StalinAM](https://stalinam.github.io/countries-api/)
 
 ### Built with
 
