@@ -215,7 +215,7 @@ Error generating stack: `+o.message+`
       font-weight: 300;
     }
   }
-`;function xg(){const{countries:e,currentPage:t,totalPages:n,setCurrentPage:r,wordFilter:l}=E.useContext(Zr),o=a=>r(a),i=()=>{const a=[];for(let s=1;s<=n;s++)a.push(I("button",{onClick:()=>o(s),disabled:s===t,children:s},s));return a},u=e==null?void 0:e.filter(a=>a.name.common.toLowerCase().includes(l));return B(Cg,{children:[!l&&I(Zs,{children:i()}),I(Eg,{children:I(yg,{countries:l?u:e})}),!l&&I(Zs,{children:i()})]})}const Cg=ie.section`
+`;function xg(){const{countries:e,currentPage:t,totalPages:n,setCurrentPage:r,wordFilter:l}=E.useContext(Zr),o=a=>r(a),i=()=>{const a=[];for(let s=1;s<=n;s++)a.push(I("button",{onClick:()=>o(s),disabled:s===t,children:s},s));return a},u=e==null?void 0:e.filter(a=>a.name.common.toLowerCase().includes(l.toLowerCase()));return B(Cg,{children:[!l&&I(Zs,{children:i()}),I(Eg,{children:I(yg,{countries:l?u:e})}),!l&&I(Zs,{children:i()})]})}const Cg=ie.section`
   display: flex;
   flex-direction: column;
   align-items: center;
