@@ -184,6 +184,7 @@ const BorderC = styled.div`
 const ListBorders = styled.ul`
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
   li {
     background-color: ${(props) => props.theme.elements};
     padding: 5px 15px;
