@@ -37,7 +37,14 @@ function CountrieDetails() {
         Back
       </Back>
       <Content>
-        <img src={countrie.flags.svg} alt={countrie.flags.alt} />
+        <img
+          src={countrie.flags.svg}
+          alt={
+            countrie.flags.alt
+              ? countrie.flags.alt
+              : `The flag of ${countrie.name.common}`
+          }
+        />
         <ContainerDescription>
           <h2>{countrie.name.common}</h2>
           <Description>

@@ -18,7 +18,14 @@ function Cards({ countries }) {
           onClick={() => handleClick(item.cca3.toLowerCase())}
         >
           <Card>
-            <img src={item.flags.svg} alt={item.flags.alt} />
+            <img
+              src={item.flags.svg}
+              alt={
+                item.flags.alt
+                  ? item.flags.alt
+                  : `The flag of ${item.name.common}`
+              }
+            />
             <Content>
               <h2>{item.name.common}</h2>
               <Description>
