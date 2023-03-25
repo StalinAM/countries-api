@@ -17,7 +17,7 @@ function App() {
         <Contaier>
           <Routes>
             <Route
-              path='/'
+              path='/countries-api/'
               element={
                 <>
                   <Filter />

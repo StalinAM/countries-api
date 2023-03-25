@@ -9,7 +9,7 @@ function CountrieDetails() {
   const navigate = useNavigate()
 
   function goBack() {
-    navigate('/')
+    navigate('/countries-api/')
     setWordFilter('')
   }
 
