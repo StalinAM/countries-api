@@ -23,7 +23,7 @@ function Pagination() {
     return pages
   }
   const newCountries = countries?.filter((countrie) =>
-    countrie.name.common.toLowerCase().includes(wordFilter)
+    countrie.name.common.toLowerCase().includes(wordFilter.toLowerCase())
   )
   return (
     <Container>
