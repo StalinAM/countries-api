@@ -1,7 +1,6 @@
 import React, { useContext, lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
-import Cards from './Cards'
 
 const LazyCards = lazy(() => import('./Cards'))
 
