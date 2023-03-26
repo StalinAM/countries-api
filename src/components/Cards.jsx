@@ -20,7 +20,7 @@ function Cards({ countries }) {
           onClick={() => handleClick(item.cca3.toLowerCase())}
         >
           <Card>
-            <Suspense>
+            <Suspense fallback={<div>Cargando...</div>}>
               <ImagenFlag
                 src={item.flags.svg}
                 alt={
