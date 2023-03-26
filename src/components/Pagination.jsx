@@ -1,7 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
 import Cards from './Cards'
+
+const LazyCards = lazy(() => import('./Cards'))
 
 function Pagination() {
   const { countries, currentPage, totalPages, setCurrentPage, wordFilter } =
@@ -29,7 +31,9 @@ function Pagination() {
     <Container>
       {!wordFilter && <ContainerPages>{renderPagination()}</ContainerPages>}
       <Content>
-        <Cards countries={wordFilter ? newCountries : countries} />
+        <Suspense fallback={<div>Cargando...</div>}>
+          <LazyCards countries={wordFilter ? newCountries : countries} />
+        </Suspense>
       </Content>
       {!wordFilter && <ContainerPages>{renderPagination()}</ContainerPages>}
     </Container>
