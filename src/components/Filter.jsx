@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
+import { UilSearch, UilAngleDown } from '@iconscout/react-unicons'
 
 function Filter() {
   const { setRegion, region, setWordFilter } = useContext(ApiContext)
@@ -16,7 +17,7 @@ function Filter() {
   return (
     <Container>
       <ContainerShearch>
-        <i className='uil uil-search' />
+        <UilSearch />
         <InputF
           onChange={handleChange}
           type='text'
@@ -26,10 +27,7 @@ function Filter() {
       <ContainerFilter>
         <ContentFilter>
           <span>{region ? region : 'Filter by region...'}</span>
-          <i
-            onClick={() => setActive(!active)}
-            className='uil uil-angle-down'
-          />
+          <UilAngleDown onClick={() => setActive(!active)} />
         </ContentFilter>
         <Menu show={active}>
           {regions.map((item, index) => (
@@ -66,10 +64,7 @@ const ContainerShearch = styled.form`
   background-color: ${(props) => props.theme.elements};
   border-radius: 8px;
   padding: 10px 10px 10px 20px;
-  i {
-    color: ${(props) => props.theme.text};
-    font-size: 1.25rem;
-  }
+  color: ${(props) => props.theme.text};
   @media screen and (min-width: 768px) {
     width: 400px;
   }
@@ -95,16 +90,14 @@ const ContentFilter = styled.div`
   padding: 10px 10px 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   background-color: ${(props) => props.theme.elements};
+  color: ${(props) => props.theme.text};
   span {
     text-transform: capitalize;
-    color: ${(props) => props.theme.text};
     font-size: 0.875rem;
     font-weight: 600;
   }
-  i {
+  svg {
     cursor: pointer;
-    color: ${(props) => props.theme.text};
-    font-size: 1.25rem;
   }
 `
 const Menu = styled.ul`
