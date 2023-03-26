@@ -18,7 +18,7 @@ function CountrieDetails() {
 
   function getBorderCountrie(id) {
     const countrie = countries?.find((item) => item.cca3 === id)
-    return countrie.name.common
+    return countrie?.name.common
   }
 
   const countrie = countries?.find((item) => item.cca3.toLowerCase() === id)
