@@ -1,7 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
+
+const ImagenFlag = lazy(() => import('./Flag'))
 
 function Cards({ countries }) {
   const { setWordFilter } = useContext(ApiContext)
@@ -18,14 +20,16 @@ function Cards({ countries }) {
           onClick={() => handleClick(item.cca3.toLowerCase())}
         >
           <Card>
-            <img
-              src={item.flags.svg}
-              alt={
-                item.flags.alt
-                  ? item.flags.alt
-                  : `The flag of ${item.name.common}`
-              }
-            />
+            <Suspense>
+              <ImagenFlag
+                src={item.flags.svg}
+                alt={
+                  item.flags.alt
+                    ? item.flags.alt
+                    : `The flag of ${item.name.common}`
+                }
+              />
+            </Suspense>
             <Content>
               <h2>{item.name.common}</h2>
               <Description>
