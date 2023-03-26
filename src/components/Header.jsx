@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { UilBrightness, UilMoon } from '@iconscout/react-unicons'
 
 function Header({ theme, toggleTheme }) {
   return (
@@ -8,12 +9,12 @@ function Header({ theme, toggleTheme }) {
       <Theme onClick={toggleTheme}>
         {theme === 'dark' ? (
           <>
-            <i className='uil uil-sun' />
+            <UilBrightness size={20} />
             <span>Ligh Mode</span>
           </>
         ) : (
           <>
-            <i className='uil uil-moon' />
+            <UilMoon size={18} />
             <span>Dark Mode</span>
           </>
         )}
@@ -46,10 +47,6 @@ const Theme = styled.button`
   gap: 0.5rem;
   background: none;
   color: ${(props) => props.theme.text};
-  i {
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
   span {
     font-weight: 600;
     font-size: 0.875rem;

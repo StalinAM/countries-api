@@ -1,7 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { ApiContext } from '../context/CountriesApi'
+import { UilArrowLeft } from '@iconscout/react-unicons'
+
+const ImagenFlag = lazy(() => import('../components/Flag'))
 
 function CountrieDetails() {
   const { countries, setWordFilter } = useContext(ApiContext)
@@ -33,18 +36,20 @@ function CountrieDetails() {
   return (
     <Container>
       <Back onClick={() => goBack()}>
-        <i className='uil uil-arrow-left' />
+        <UilArrowLeft />
         Back
       </Back>
       <Content>
-        <img
-          src={countrie.flags.svg}
-          alt={
-            countrie.flags.alt
-              ? countrie.flags.alt
-              : `The flag of ${countrie.name.common}`
-          }
-        />
+        <Suspense>
+          <ImagenFlag
+            src={countrie.flags.svg}
+            alt={
+              countrie.flags.alt
+                ? countrie.flags.alt
+                : `The flag of ${countrie.name.common}`
+            }
+          />
+        </Suspense>
         <ContainerDescription>
           <h2>{countrie.name.common}</h2>
           <Description>
@@ -117,9 +122,6 @@ const Back = styled.button`
   padding: 5px 20px 5px 15px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   color: ${(props) => props.theme.text};
-  i {
-    font-size: 1.3rem;
-  }
 `
 const Content = styled.article`
   display: flex;
